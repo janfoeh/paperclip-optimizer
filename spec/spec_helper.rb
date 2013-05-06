@@ -1,6 +1,6 @@
 require 'paperclip'
 require 'paperclip/railtie'
-require 'filemagic'
+# require 'filemagic'
 require 'paperclip_optimizer'
 
 require 'rspec'
@@ -25,6 +25,6 @@ class Upload < ActiveRecord::Base
       :storage    => :filesystem,
       :path       => "./spec/tmp/:id.:extension",
       :url        => "/spec/tmp/:id.:extension",
-      :styles     => { :medium },
+      :styles     => { medium: "500x500>" },
       :processors => [:paperclip_optimizer]
 end
