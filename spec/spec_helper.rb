@@ -43,8 +43,14 @@ class UploadWithOptimizer < UploadBase
   end
 end
 
-def get_fixture(file_type = :jpg, valid = true)
-  file_name     = "#{valid ? "valid" : "invalid"}.#{file_type.to_s}"
+class UploadOptimizeOnly < UploadBase
+  def processors
+    [:paperclip_optimizer]
+  end
+end
+
+def get_fixture(file_type = :jpg, valid = "valid")
+  file_name     = "#{valid}.#{file_type.to_s}"
   fixtures_dir  = File.join(File.dirname(__FILE__), "../fixtures")
   fixture_path  = File.join(fixtures_dir, file_name)
 
