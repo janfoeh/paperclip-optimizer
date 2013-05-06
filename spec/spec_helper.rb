@@ -20,11 +20,33 @@ load(File.join(File.dirname(__FILE__), 'schema.rb'))
 
 Paperclip::Railtie.insert
 
-class Upload < ActiveRecord::Base
+class UploadBase < ActiveRecord::Base
+  self.table_name = "uploads"
+
   has_attached_file :image,
       :storage    => :filesystem,
       :path       => "./spec/tmp/:id.:extension",
       :url        => "/spec/tmp/:id.:extension",
       :styles     => { medium: "500x500>" },
-      :processors => [:paperclip_optimizer]
+      :processors => lambda { |instance| instance.processors }
+end
+
+class UploadWithoutOptimizer < UploadBase
+  def processors
+    [:thumbnail]
+  end
+end
+
+class UploadWithOptimizer < UploadBase
+  def processors
+    [:thumbnail, :paperclip_optimizer]
+  end
+end
+
+def get_fixture(file_type = :jpg, valid = true)
+  file_name     = "#{valid ? "valid" : "invalid"}.#{file_type.to_s}"
+  fixtures_dir  = File.join(File.dirname(__FILE__), "../fixtures")
+  fixture_path  = File.join(fixtures_dir, file_name)
+
+  File.open(fixture_path)
 end
