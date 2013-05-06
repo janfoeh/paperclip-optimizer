@@ -10,7 +10,7 @@ Gem::Specification.new do |spec|
   spec.email         = ["jan@programmanstalt.de"]
   spec.description   = %q{paperclip-optimizer is a processor for Paperclip that allows you to optimize and minify uploaded JPEG and PNG files.}
   spec.summary       = %q{Minify Paperclip JPEG and PNG attachments}
-  spec.homepage      = ""
+  spec.homepage      = "https://github.com/janfoeh/paperclip-optimizer"
   spec.license       = "MIT"
 
   spec.add_dependency "paperclip", "~> 3.4.1"
