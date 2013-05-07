@@ -2,5 +2,6 @@ language: ruby
 rvm:
   - "1.9.3"
   - "2.0.0"
-# uncomment this line if your project needs to run something other than `rake`:
+before_install:
+ - sudo apt-get install -qq libjpeg-progs optipng
 script: bundle exec rspec spec
