@@ -63,6 +63,6 @@ describe Paperclip::PaperclipOptimizer do
     jpg.close
     
     expect(upload.errors).not_to be_empty
-    expect(upload.errors.messages.first.last.first).to eq("compressing invalid.jpg failed: the compressed temporary file does not exist")
+    expect(upload.errors.full_messages.first).to eq("Image compressing invalid.jpg failed: ImageOptim did not return a compressed image")
   end
 end
