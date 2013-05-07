@@ -1,7 +1,7 @@
 require 'paperclip'
 require 'paperclip/railtie'
 # require 'filemagic'
-require 'paperclip_optimizer'
+require 'paperclip-optimizer'
 
 require 'rspec'
 require 'rspec/autorun'
