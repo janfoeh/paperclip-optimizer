@@ -75,4 +75,25 @@ describe Paperclip::PaperclipOptimizer do
       "Image compressing invalid.jpg failed: ImageOptim did not return a compressed image"
     )
   end
+
+  it "should allow disabled optimization options to be reenabled" do
+    settings  = {
+                  :gifsicle => {:interlace => true}
+                }.reverse_merge(::PaperclipOptimizer::DEFAULT_SETTINGS)
+
+    ImageOptim.should_receive(:new).with(settings).and_call_original
+
+    jpg = get_fixture(:jpg)
+
+    stubbed_upload_model(
+      processor_settings: [:paperclip_optimizer],
+      style_settings: { 
+        medium: {
+          paperclip_optimizer: {
+            gifsicle: {:interlace => true}
+          }
+        }
+      }
+    ).new(:image => jpg)
+  end
 end
