@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset='utf-8'>
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <link href='https://fonts.googleapis.com/css?family=Chivo:900' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen" />
+    <link rel="stylesheet" type="text/css" href="stylesheets/pygment_trac.css" media="screen" />
+    <link rel="stylesheet" type="text/css" href="stylesheets/print.css" media="print" />
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <title>Paperclip-optimizer by janfoeh</title>
+  </head>
+
+  <body>
+    <div id="container">
+      <div class="inner">
+
+        <header>
+          <h1>Paperclip-optimizer</h1>
+          <h2>Minify Paperclip image attachments</h2>
+        </header>
+
+        <section id="downloads" class="clearfix">
+          <a href="https://github.com/janfoeh/paperclip-optimizer/zipball/master" id="download-zip" class="button"><span>Download .zip</span></a>
+          <a href="https://github.com/janfoeh/paperclip-optimizer/tarball/master" id="download-tar-gz" class="button"><span>Download .tar.gz</span></a>
+          <a href="https://github.com/janfoeh/paperclip-optimizer" id="view-on-github" class="button"><span>View on GitHub</span></a>
+        </section>
+
+        <hr>
+
+        <section id="main_content">
+          <h1>PaperclipOptimizer</h1>
+
+<p><a href="https://travis-ci.org/janfoeh/paperclip-optimizer"><img src="https://travis-ci.org/janfoeh/paperclip-optimizer.png" alt="Build Status"></a>
+<a href="https://gemnasium.com/janfoeh/paperclip-optimizer"><img src="https://gemnasium.com/janfoeh/paperclip-optimizer.png" alt="Dependency Status"></a></p>
+
+<p>PaperClipOptimizer is a processor for <a href="https://github.com/thoughtbot/paperclip">Paperclip</a> that allows 
+you to optimize and minify uploaded JPG, PNG or GIF images.</p>
+
+<p>It is just a thin wrapper around <a href="https://github.com/toy/image_optim">ImageOptim</a>, 
+which supports many external optimization libraries like</p>
+
+<ul>
+<li>
+<a href="http://advancemame.sourceforge.net/doc-advpng.html">advpng</a> from 
+<a href="http://advancemame.sourceforge.net/comp-readme.html">AdvanceCOMP</a>
+</li>
+<li><a href="http://www.lcdf.org/gifsicle/">gifsicle</a></li>
+<li><a href="http://www.kokkonen.net/tjko/projects.html">jpegoptim</a></li>
+<li>jpegtran from <a href="http://www.ijg.org/">Independent JPEG Group's JPEG library</a>
+</li>
+<li><a href="http://optipng.sourceforge.net/">optipng</a></li>
+<li><a href="http://pmt.sourceforge.net/pngcrush/">pngcrush</a></li>
+<li><a href="http://www.advsys.net/ken/util/pngout.htm">pngout</a></li>
+</ul><h2>Installation</h2>
+
+<p>Add this line to your application's Gemfile after the Paperclip gem:</p>
+
+<pre><code>gem 'paperclip-optimizer'
+</code></pre>
+
+<p>And then execute:</p>
+
+<pre><code>$ bundle
+</code></pre>
+
+<p>See <a href="https://github.com/toy/image_optim#binaries-location">ImageOptims README</a> 
+on how to install the various optimization libraries.</p>
+
+<h2>Usage</h2>
+
+<p>Just add <code>:paperclip_optimizer</code> to Paperclips <code>:processors</code> - setting:</p>
+
+<div class="highlight"><pre><span class="k">class</span> <span class="nc">User</span> <span class="o">&lt;</span> <span class="ss">ActiveRecord</span><span class="p">:</span><span class="ss">:Base</span>
+  <span class="n">attr_accessible</span> <span class="ss">:avatar</span>
+  <span class="n">has_attached_file</span> <span class="ss">:avatar</span><span class="p">,</span> 
+                    <span class="ss">:styles</span> <span class="o">=&gt;</span> <span class="p">{</span> <span class="ss">:thumb</span> <span class="o">=&gt;</span> <span class="s2">"100x100&gt;"</span> <span class="p">},</span>
+                    <span class="ss">:default_url</span> <span class="o">=&gt;</span> <span class="s2">"/images/:style/missing.png"</span><span class="p">,</span>
+                    <span class="ss">:processors</span> <span class="o">=&gt;</span> <span class="o">[</span><span class="ss">:thumbnail</span><span class="p">,</span> <span class="ss">:paperclip_optimizer</span><span class="o">]</span>
+<span class="k">end</span>
+</pre></div>
+
+<p>Remember to include the <code>:thumbnail</code> processor as well if you want to retain 
+Paperclips geometry functionality.</p>
+
+<h3>Settings</h3>
+
+<p>By default, PaperclipOptimizer only enables <em>jpegtran</em> and <em>optipng</em>. You can 
+pass configuration options to ImageOptim through the <code>:styles</code> hash:</p>
+
+<div class="highlight"><pre><span class="k">class</span> <span class="nc">User</span> <span class="o">&lt;</span> <span class="ss">ActiveRecord</span><span class="p">:</span><span class="ss">:Base</span>
+  <span class="n">attr_accessible</span> <span class="ss">:avatar</span>
+  <span class="n">has_attached_file</span> <span class="ss">:avatar</span><span class="p">,</span> 
+                    <span class="ss">:styles</span> <span class="o">=&gt;</span> <span class="p">{</span>
+                      <span class="ss">:thumb</span> <span class="o">=&gt;</span> <span class="p">{</span>
+                        <span class="ss">:geometry</span> <span class="o">=&gt;</span> <span class="s2">"100x100&gt;"</span><span class="p">,</span>
+                        <span class="ss">:paperclip_optimizer</span> <span class="o">=&gt;</span> <span class="p">{</span>
+                          <span class="ss">:pngout</span> <span class="o">=&gt;</span> <span class="p">{</span>
+                            <span class="ss">:strategy</span> <span class="o">=&gt;</span> <span class="mi">1</span>
+                          <span class="p">}</span>
+                        <span class="p">}</span>
+                      <span class="p">}</span>
+                    <span class="p">},</span>
+                    <span class="ss">:default_url</span> <span class="o">=&gt;</span> <span class="s2">"/images/:style/missing.png"</span><span class="p">,</span>
+                    <span class="ss">:processors</span> <span class="o">=&gt;</span> <span class="o">[</span><span class="ss">:thumbnail</span><span class="p">,</span> <span class="ss">:paperclip_optimizer</span><span class="o">]</span>
+<span class="k">end</span>
+</pre></div>
+
+<p>See <a href="https://github.com/toy/image_optim#options">ImageOptims options</a> for 
+all available options.</p>
+
+<h2>Contributing</h2>
+
+<ol>
+<li>Fork it</li>
+<li>Create your feature branch (<code>git checkout -b my-new-feature</code>)</li>
+<li>Commit your changes (<code>git commit -am 'Add some feature'</code>)</li>
+<li>Push to the branch (<code>git push origin my-new-feature</code>)</li>
+<li>Create new Pull Request</li>
+</ol>
+        </section>
+
+        <footer>
+          Paperclip-optimizer is maintained by <a href="https://github.com/janfoeh">janfoeh</a><br>
+          This page was generated by <a href="http://pages.github.com">GitHub Pages</a>. Tactile theme by <a href="http://twitter.com/jasonlong">Jason Long</a>.
+        </footer>
+
+        
+      </div>
+    </div>
+  </body>
+</html>
