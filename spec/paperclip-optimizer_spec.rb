@@ -12,16 +12,6 @@ describe Paperclip::PaperclipOptimizer do
     end
   end
 
-  it "does not prevent attachments from being saved" do
-    jpg = get_fixture(:jpg)
-
-    upload = UploadWithOptimizer.new(:image => jpg)
-    upload.save
-    jpg.close
-
-    expect(upload.persisted?).to be_true
-  end
-
   it "creates smaller JPEGs" do
     jpg = get_fixture(:jpg)
     unoptimized_upload = UploadWithoutOptimizer.new(:image => jpg)
