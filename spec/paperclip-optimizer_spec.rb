@@ -2,6 +2,18 @@ require "spec_helper"
 require "fileutils"
 
 describe Paperclip::PaperclipOptimizer do
+
+  def stubbed_upload_model(*args)
+    stubbed_model = Upload.dup
+
+    # prevent ActiveModel::Validations from blowing up when error messages are 
+    # accessed on an anonymous class
+    stubbed_model.stub(:model_name => ActiveModel::Name.new(self, nil, "temp"))
+    stubbed_model.any_instance.stub(*args)
+
+    stubbed_model
+  end
+
   before(:each) do
     tmp_dir = File.join(File.dirname(__FILE__), 'tmp')
     
@@ -14,12 +26,14 @@ describe Paperclip::PaperclipOptimizer do
 
   it "creates smaller JPEGs" do
     jpg = get_fixture(:jpg)
-    unoptimized_upload = UploadWithoutOptimizer.new(:image => jpg)
+    unoptimized_upload = Upload.new(:image => jpg)
     jpg.close
     unoptimized_upload.save
 
     jpg = get_fixture(:jpg)
-    optimized_upload = UploadWithOptimizer.new(:image => jpg)
+    optimized_upload  = stubbed_upload_model(
+                          processor_settings: [:thumbnail, :paperclip_optimizer]
+                        ).new(:image => jpg)
     jpg.close
     optimized_upload.save
 
@@ -31,14 +45,16 @@ describe Paperclip::PaperclipOptimizer do
 
   it "creates smaller PNGs" do
     png = get_fixture(:png)
-    unoptimized_upload = UploadWithoutOptimizer.new(:image => png)
+    unoptimized_upload = Upload.new(:image => png)
     unoptimized_upload.save
     png.close
 
     png = get_fixture(:png)
-    optimized_upload = UploadWithOptimizer.new(:image => png)
-    optimized_upload.save
+    optimized_upload  = stubbed_upload_model(
+                          processor_settings: [:thumbnail, :paperclip_optimizer]
+                        ).new(:image => png)
     png.close
+    optimized_upload.save
 
     unoptimized_file_size  = File.size(unoptimized_upload.image.path(:medium))
     optimized_file_size    = File.size(optimized_upload.image.path(:medium))
@@ -48,11 +64,15 @@ describe Paperclip::PaperclipOptimizer do
 
   it "creates an error when an invalid image is saved" do
     jpg = get_fixture(:jpg, "invalid")
-    upload = UploadOptimizeOnly.new(:image => jpg)
-    upload.save
+    upload  = stubbed_upload_model(
+                processor_settings: [:paperclip_optimizer]
+              ).new(:image => jpg)
     jpg.close
-    
+    upload.save
+
     expect(upload.errors).not_to be_empty
-    expect(upload.errors.full_messages.first).to eq("Image compressing invalid.jpg failed: ImageOptim did not return a compressed image")
+    expect(upload.errors.full_messages.first).to eq(
+      "Image compressing invalid.jpg failed: ImageOptim did not return a compressed image"
+    )
   end
 end

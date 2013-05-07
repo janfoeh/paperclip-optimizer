@@ -20,32 +20,24 @@ load(File.join(File.dirname(__FILE__), 'schema.rb'))
 
 Paperclip::Railtie.insert
 
-class UploadBase < ActiveRecord::Base
+class Upload < ActiveRecord::Base
   self.table_name = "uploads"
 
   has_attached_file :image,
       :storage    => :filesystem,
       :path       => "./spec/tmp/:id.:extension",
       :url        => "/spec/tmp/:id.:extension",
-      :styles     => { medium: "500x500>" },
-      :processors => lambda { |instance| instance.processors }
-end
+      :styles     => lambda { |attachment| attachment.instance.style_settings },
+      :processors => lambda { |instance| instance.processor_settings }
 
-class UploadWithoutOptimizer < UploadBase
-  def processors
+  def style_settings
+    { 
+      medium: { geometry: "500x500>" }
+    }
+  end
+
+  def processor_settings
     [:thumbnail]
-  end
-end
-
-class UploadWithOptimizer < UploadBase
-  def processors
-    [:thumbnail, :paperclip_optimizer]
-  end
-end
-
-class UploadOptimizeOnly < UploadBase
-  def processors
-    [:paperclip_optimizer]
   end
 end
 
