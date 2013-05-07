@@ -16,6 +16,8 @@ describe Paperclip::PaperclipOptimizer do
 
   before(:each) do
     tmp_dir = File.join(File.dirname(__FILE__), 'tmp')
+
+    Dir.mkdir(tmp_dir) unless File.directory?(tmp_dir)
     
     Dir.entries(tmp_dir).each do |f|
       next unless f.end_with?(".jpg", ".png")
