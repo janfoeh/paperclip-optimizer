@@ -23,12 +23,10 @@ module Paperclip
       end
 
       if compressed_file_path && File.exists?(compressed_file_path)
-        result = File.open(compressed_file_path)
+        return File.open(compressed_file_path)
       else
-        raise Paperclip::Error, "compressing #{@attachment.original_filename} failed: ImageOptim did not return a compressed image"
+        return @file
       end
-
-      result
     end
   end
 end
