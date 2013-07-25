@@ -4,4 +4,5 @@ rvm:
   - "2.0.0"
 before_install:
  - sudo apt-get install -qq libjpeg-progs optipng
+before_script: "mkdir tmp"
 script: bundle exec rspec spec
