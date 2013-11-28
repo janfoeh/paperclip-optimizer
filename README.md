@@ -3,7 +3,7 @@
 [![Build Status](https://travis-ci.org/janfoeh/paperclip-optimizer.png)](https://travis-ci.org/janfoeh/paperclip-optimizer)
 [![Dependency Status](https://gemnasium.com/janfoeh/paperclip-optimizer.png)](https://gemnasium.com/janfoeh/paperclip-optimizer)
 
-PaperClipOptimizer is a processor for [Paperclip](https://github.com/thoughtbot/paperclip) that allows 
+PaperclipOptimizer is a processor for [Paperclip](https://github.com/thoughtbot/paperclip) that allows 
 you to optimize and minify uploaded JPG, PNG or GIF images.
 
 It is just a thin wrapper around [ImageOptim](https://github.com/toy/image_optim), 
@@ -30,6 +30,14 @@ And then execute:
 
 See [ImageOptims README](https://github.com/toy/image_optim#binaries-location) 
 on how to install the various optimization libraries.
+
+### Deployment on Heroku
+
+If you deploy to Heroku, take a look at the [image_optim_bin](https://github.com/mooktakim/image_optim_bin) gem. It supplies the necessary 
+optimization binaries, compiled and ready for Herokus environment.
+
+    gem "image_optim_bin", group: :production
+    gem "paperclip-optimizer"
 
 ## Usage
 
