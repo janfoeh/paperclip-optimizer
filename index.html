@@ -31,12 +31,13 @@
         <hr>
 
         <section id="main_content">
-          <h1>PaperclipOptimizer</h1>
+          <h1>
+<a name="paperclipoptimizer" class="anchor" href="#paperclipoptimizer"><span class="octicon octicon-link"></span></a>PaperclipOptimizer</h1>
 
 <p><a href="https://travis-ci.org/janfoeh/paperclip-optimizer"><img src="https://travis-ci.org/janfoeh/paperclip-optimizer.png" alt="Build Status"></a>
 <a href="https://gemnasium.com/janfoeh/paperclip-optimizer"><img src="https://gemnasium.com/janfoeh/paperclip-optimizer.png" alt="Dependency Status"></a></p>
 
-<p>PaperClipOptimizer is a processor for <a href="https://github.com/thoughtbot/paperclip">Paperclip</a> that allows 
+<p>PaperclipOptimizer is a processor for <a href="https://github.com/thoughtbot/paperclip">Paperclip</a> that allows 
 you to optimize and minify uploaded JPG, PNG or GIF images.</p>
 
 <p>It is just a thin wrapper around <a href="https://github.com/toy/image_optim">ImageOptim</a>, 
@@ -54,7 +55,8 @@ which supports many external optimization libraries like</p>
 <li><a href="http://optipng.sourceforge.net/">optipng</a></li>
 <li><a href="http://pmt.sourceforge.net/pngcrush/">pngcrush</a></li>
 <li><a href="http://www.advsys.net/ken/util/pngout.htm">pngout</a></li>
-</ul><h2>Installation</h2>
+</ul><h2>
+<a name="installation" class="anchor" href="#installation"><span class="octicon octicon-link"></span></a>Installation</h2>
 
 <p>Add this line to your application's Gemfile after the Paperclip gem:</p>
 
@@ -69,11 +71,22 @@ which supports many external optimization libraries like</p>
 <p>See <a href="https://github.com/toy/image_optim#binaries-location">ImageOptims README</a> 
 on how to install the various optimization libraries.</p>
 
-<h2>Usage</h2>
+<h3>
+<a name="deployment-on-heroku" class="anchor" href="#deployment-on-heroku"><span class="octicon octicon-link"></span></a>Deployment on Heroku</h3>
+
+<p>If you deploy to Heroku, take a look at the <a href="https://github.com/mooktakim/image_optim_bin">image_optim_bin</a> gem. It supplies the necessary 
+optimization binaries, compiled and ready for Herokus environment.</p>
+
+<pre><code>gem "image_optim_bin", group: :production
+gem "paperclip-optimizer"
+</code></pre>
+
+<h2>
+<a name="usage" class="anchor" href="#usage"><span class="octicon octicon-link"></span></a>Usage</h2>
 
 <p>Just add <code>:paperclip_optimizer</code> to Paperclips <code>:processors</code> - setting:</p>
 
-<div class="highlight"><pre><span class="k">class</span> <span class="nc">User</span> <span class="o">&lt;</span> <span class="ss">ActiveRecord</span><span class="p">:</span><span class="ss">:Base</span>
+<div class="highlight highlight-ruby"><pre><span class="k">class</span> <span class="nc">User</span> <span class="o">&lt;</span> <span class="ss">ActiveRecord</span><span class="p">:</span><span class="ss">:Base</span>
   <span class="n">attr_accessible</span> <span class="ss">:avatar</span>
   <span class="n">has_attached_file</span> <span class="ss">:avatar</span><span class="p">,</span> 
                     <span class="ss">:styles</span> <span class="o">=&gt;</span> <span class="p">{</span> <span class="ss">:thumb</span> <span class="o">=&gt;</span> <span class="s2">"100x100&gt;"</span> <span class="p">},</span>
@@ -85,12 +98,13 @@ on how to install the various optimization libraries.</p>
 <p>Remember to include the <code>:thumbnail</code> processor as well if you want to retain 
 Paperclips geometry functionality.</p>
 
-<h3>Settings</h3>
+<h3>
+<a name="settings" class="anchor" href="#settings"><span class="octicon octicon-link"></span></a>Settings</h3>
 
 <p>By default, PaperclipOptimizer only enables <em>jpegtran</em> and <em>optipng</em>. You can 
 pass configuration options to ImageOptim through the <code>:styles</code> hash:</p>
 
-<div class="highlight"><pre><span class="k">class</span> <span class="nc">User</span> <span class="o">&lt;</span> <span class="ss">ActiveRecord</span><span class="p">:</span><span class="ss">:Base</span>
+<div class="highlight highlight-ruby"><pre><span class="k">class</span> <span class="nc">User</span> <span class="o">&lt;</span> <span class="ss">ActiveRecord</span><span class="p">:</span><span class="ss">:Base</span>
   <span class="n">attr_accessible</span> <span class="ss">:avatar</span>
   <span class="n">has_attached_file</span> <span class="ss">:avatar</span><span class="p">,</span> 
                     <span class="ss">:styles</span> <span class="o">=&gt;</span> <span class="p">{</span>
@@ -111,7 +125,8 @@ pass configuration options to ImageOptim through the <code>:styles</code> hash:<
 <p>See <a href="https://github.com/toy/image_optim#options">ImageOptims options</a> for 
 all available options.</p>
 
-<h2>Contributing</h2>
+<h2>
+<a name="contributing" class="anchor" href="#contributing"><span class="octicon octicon-link"></span></a>Contributing</h2>
 
 <ol>
 <li>Fork it</li>
@@ -124,7 +139,7 @@ all available options.</p>
 
         <footer>
           Paperclip-optimizer is maintained by <a href="https://github.com/janfoeh">janfoeh</a><br>
-          This page was generated by <a href="http://pages.github.com">GitHub Pages</a>. Tactile theme by <a href="http://twitter.com/jasonlong">Jason Long</a>.
+          This page was generated by <a href="http://pages.github.com">GitHub Pages</a>. Tactile theme by <a href="https://twitter.com/jasonlong">Jason Long</a>.
         </footer>
 
         
