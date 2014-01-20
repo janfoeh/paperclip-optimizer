@@ -3,11 +3,10 @@ require "paperclip-optimizer/processor"
 
 module PaperclipOptimizer
   DEFAULT_SETTINGS = {
-    verbose: true,
-    pngcrush: false, 
-    pngout: false, 
-    advpng: false, 
-    jpegoptim: false, 
+    pngcrush: false,
+    pngout: false,
+    advpng: false,
+    jpegoptim: false,
     gifsicle: false
   }.freeze
 
