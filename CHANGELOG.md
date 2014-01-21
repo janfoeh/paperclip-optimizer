@@ -1,5 +1,10 @@
 # CHANGELOG
 
+## 1.0.1
+
+* do not produce verbose log output by default - [Sunny Ripert](https://github.com/sunny)
+* declare the dependency on Paperclip only once - [Sunny Ripert](https://github.com/sunny)
+
 ## 1.0.0
 
 * we're going to 1.0.0 after six months in production
