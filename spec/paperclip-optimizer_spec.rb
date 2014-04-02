@@ -64,18 +64,6 @@ describe Paperclip::PaperclipOptimizer do
     expect(optimized_file_size).to be < unoptimized_file_size
   end
 
-  it "does not prevent invalid attachments from being saved" do
-    jpg = get_fixture(:jpg, "invalid")
-    upload  = stubbed_upload_model(
-                processor_settings: [:paperclip_optimizer]
-              ).new(:image => jpg)
-    jpg.close
-    upload.save
-
-    expect(upload.errors).to be_empty
-    expect(upload.persisted?).to be_true
-  end
-
   it "should allow disabled optimization options to be reenabled" do
     settings  = {
                   :gifsicle => {:interlace => true}
