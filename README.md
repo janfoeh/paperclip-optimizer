@@ -1,5 +1,6 @@
 # PaperclipOptimizer
 
+[![Gem Version](https://badge.fury.io/rb/paperclip-optimizer.png)](http://badge.fury.io/rb/paperclip-optimizer)
 [![Build Status](https://travis-ci.org/janfoeh/paperclip-optimizer.png)](https://travis-ci.org/janfoeh/paperclip-optimizer)
 [![Dependency Status](https://gemnasium.com/janfoeh/paperclip-optimizer.png)](https://gemnasium.com/janfoeh/paperclip-optimizer)
 
@@ -17,6 +18,20 @@ which supports many external optimization libraries like
 * [optipng](http://optipng.sourceforge.net/)
 * [pngcrush](http://pmt.sourceforge.net/pngcrush/)
 * [pngout](http://www.advsys.net/ken/util/pngout.htm)
+
+### What's new
+
+**2014-04-02 1.0.2 released**
+
+* relax Paperclip dependency, allow 3.4.x again since it works fine
+
+Read the [CHANGELOG](CHANGELOG.md) for previous changes.
+
+### Dependencies
+
+PaperclipOptimizer 1.x is currently compatible with Paperclip 3.4.0 to 3.5.4; version 2 will require Paperclip 4.
+
+I plan on keeping the 1.x series updated and on feature parity for at least until the end of 2014.
 
 ## Installation
 

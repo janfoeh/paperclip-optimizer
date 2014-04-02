@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## 1.0.2
+
+* relax Paperclip dependency, allow 3.4.x again since it works fine
+
 ## 1.0.1
 
 * do not produce verbose log output by default - [Sunny Ripert](https://github.com/sunny)
