@@ -30,7 +30,9 @@ class Upload < ActiveRecord::Base
       :styles     => lambda { |attachment| attachment.instance.style_settings },
       :processors => lambda { |instance| instance.processor_settings }
 
-  do_not_validate_attachment_file_type :image
+  if self.respond_to?(:do_not_validate_attachment_file_type)
+    do_not_validate_attachment_file_type :image
+  end
 
   def style_settings
     { 
