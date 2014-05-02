@@ -21,6 +21,10 @@ which supports many external optimization libraries like
 
 ### What's new
 
+**2014-05-02 1.0.3 released**
+
+* updated tests, compatibility with Paperclip 4 - thanks [Sija](https://github.com/Sija)
+
 **2014-04-02 1.0.2 released**
 
 * relax Paperclip dependency, allow 3.4.x again since it works fine
@@ -29,9 +33,7 @@ Read the [CHANGELOG](CHANGELOG.md) for previous changes.
 
 ### Dependencies
 
-PaperclipOptimizer 1.x is currently compatible with Paperclip 3.4.0 to 3.5.4; version 2 will require Paperclip 4.
-
-I plan on keeping the 1.x series updated and on feature parity for at least until the end of 2014.
+PaperclipOptimizer is currently compatible with Paperclip 3.4.0 to 4.1.x.
 
 ## Installation
 

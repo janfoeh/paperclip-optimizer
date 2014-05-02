@@ -1,13 +1,17 @@
 # CHANGELOG
 
+## 1.0.3
+
+* updated tests, compatibility with Paperclip 4 - thanks [Sija](https://github.com/Sija)
+
 ## 1.0.2
 
 * relax Paperclip dependency, allow 3.4.x again since it works fine
 
 ## 1.0.1
 
-* do not produce verbose log output by default - [Sunny Ripert](https://github.com/sunny)
-* declare the dependency on Paperclip only once - [Sunny Ripert](https://github.com/sunny)
+* do not produce verbose log output by default - thanks [Sunny Ripert](https://github.com/sunny)
+* declare the dependency on Paperclip only once - thanks [Sunny Ripert](https://github.com/sunny)
 
 ## 1.0.0
 
