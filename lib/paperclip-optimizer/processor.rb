@@ -1,5 +1,5 @@
-require "paperclip"
-require "image_optim"
+require 'paperclip'
+require 'image_optim'
 
 module Paperclip
   class PaperclipOptimizer < Processor
@@ -22,7 +22,7 @@ module Paperclip
         $stderr = old_stderr if settings[:verbose]
       end
 
-      if compressed_file_path && File.exists?(compressed_file_path)
+      if compressed_file_path && File.exist?(compressed_file_path)
         return File.open(compressed_file_path)
       else
         return @file

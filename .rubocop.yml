@@ -1,0 +1,8 @@
+AllCops:
+  Exclude:
+    - 'spec/schema.rb'
+
+Style/SpaceInsideParens:
+  Enabled: false
+Metrics/LineLength:
+  Enabled: false

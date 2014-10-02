@@ -1,5 +1,6 @@
-require "paperclip-optimizer/version"
-require "paperclip-optimizer/processor"
+
+require 'paperclip-optimizer/version'
+require 'paperclip-optimizer/processor'
 
 module PaperclipOptimizer
   DEFAULT_SETTINGS = {
@@ -22,7 +23,7 @@ module PaperclipOptimizer
       @logger.send(@log_level, string)
     end
 
-    alias_method "<<", :write
+    alias_method '<<', :write
 
     def flush; end
   end
