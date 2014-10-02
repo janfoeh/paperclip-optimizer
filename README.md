@@ -4,8 +4,8 @@
 [![Build Status](https://travis-ci.org/janfoeh/paperclip-optimizer.png)](https://travis-ci.org/janfoeh/paperclip-optimizer)
 [![Dependency Status](https://gemnasium.com/janfoeh/paperclip-optimizer.png)](https://gemnasium.com/janfoeh/paperclip-optimizer)
 
-PaperclipOptimizer is a processor for [Paperclip](https://github.com/thoughtbot/paperclip) that allows 
-you to optimize and minify uploaded JPG, PNG or GIF images.
+PaperclipOptimizer is a [Paperclip](https://github.com/thoughtbot/paperclip) processor for 
+optimizing and minifying uploaded images.
 
 It is just a thin wrapper around [ImageOptim](https://github.com/toy/image_optim), 
 which supports many external optimization libraries like
