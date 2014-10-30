@@ -3,8 +3,18 @@ require "image_optim"
 
 module Paperclip
   class PaperclipOptimizer < Processor
+    def self.default_settings
+      @default_settings ||= {
+        pngcrush: false,
+        pngout: false,
+        advpng: false,
+        jpegoptim: false,
+        gifsicle: false
+      }
+    end
+
     def make
-      settings = (@options[:paperclip_optimizer] || {}).reverse_merge(::PaperclipOptimizer::DEFAULT_SETTINGS)
+      settings = (@options[:paperclip_optimizer] || {}).reverse_merge(self.class.default_settings)
 
       src_path = File.expand_path(@file.path)
 

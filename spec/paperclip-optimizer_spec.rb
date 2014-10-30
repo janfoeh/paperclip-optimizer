@@ -67,7 +67,7 @@ describe Paperclip::PaperclipOptimizer do
   it "should allow disabled optimization options to be reenabled" do
     settings  = {
                   :gifsicle => {:interlace => true}
-                }.reverse_merge(::PaperclipOptimizer::DEFAULT_SETTINGS)
+                }.reverse_merge(::Paperclip::PaperclipOptimizer.default_settings)
 
     ImageOptim.should_receive(:new).with(settings).and_call_original
 
@@ -82,6 +82,25 @@ describe Paperclip::PaperclipOptimizer do
           }
         }
       }
+    ).new(:image => jpg)
+  end
+
+
+  it "should allow default options" do
+    settings  = {
+      :gifsicle => {:interlace => true}
+    }.reverse_merge(::Paperclip::PaperclipOptimizer.default_settings)
+
+    ImageOptim.should_receive(:new).with(settings).and_call_original
+
+    jpg = get_fixture(:jpg)
+
+    ::Paperclip::PaperclipOptimizer.default_settings.merge!(
+      gifsicle: {:interlace => true},
+    )
+
+    stubbed_upload_model(
+      processor_settings: [:paperclip_optimizer],
     ).new(:image => jpg)
   end
 end
