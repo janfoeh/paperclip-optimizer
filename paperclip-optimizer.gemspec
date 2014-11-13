@@ -26,4 +26,35 @@ Gem::Specification.new do |spec|
   spec.files         = `git ls-files`.split($INPUT_RECORD_SEPARATOR)
   spec.test_files    = spec.files.grep(%r{^(test|spec|features)/})
   spec.require_paths = ['lib']
+  
+  spec.post_install_message = %q{
+Initializer
+-----------
+
+run
+
+    rails g paperclip_optimizer:install
+
+to create an initializer for global configuration.
+
+Breaking changes from 1.0.3
+---------------------------
+
+Please note that Paperclip 2 now disables all optimization libraries by default. Re-enable jpegtran
+and optipng manually if you wish to retain the previous behaviour.
+
+See https://github.com/janfoeh/paperclip-optimizer#settings for more information on the new 
+configuration system.
+
+PLEASE NOTE
+-----------
+
+PaperclipOptimizer depends on image_optim, which by default inserts itself into the asset pipeline and 
+tries to compress your application assets. This might fail if you do not have all supported optimization 
+binaries installed. Add
+
+    config.assets.image_optim = false
+    
+to your config/application.rb to disable this.
+}
 end
