@@ -1,5 +1,17 @@
 # CHANGELOG
 
+## 2.0.0.beta
+
+* **all available optimization libraries are disabled by default**
+
+  Previous versions enabled jpegtran and optipng by default. You will have to 
+  re-enable them manually if you wish to retain that behaviour
+
+* configure PaperclipOptimizer globally, per-attachment and per-style
+
+  Thanks to [danschultzer](https://github.com/danschultzer), [braindeaf](https://github.com/braindeaf) and 
+  [tirdadc](https://github.com/tirdadc) for pull requests, input and reports
+
 ## 1.0.3
 
 * updated tests, compatibility with Paperclip 4 - thanks [Sija](https://github.com/Sija)
