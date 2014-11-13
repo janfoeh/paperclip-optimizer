@@ -25,9 +25,11 @@ describe Paperclip::PaperclipOptimizer do
 
       FileUtils.remove_entry_secure( File.join(tmp_dir, f) )
     end
+    
+    Paperclip::PaperclipOptimizer.default_options = PaperclipOptimizer::DEFAULT_OPTIONS
   end
 
-  it 'creates smaller JPEGs' do
+  it 'creates smaller JPEGs with jpegtran' do
     jpg = get_fixture(:jpg)
     unoptimized_upload = Upload.new(image: jpg)
     jpg.close
@@ -35,7 +37,8 @@ describe Paperclip::PaperclipOptimizer do
 
     jpg = get_fixture(:jpg)
     optimized_upload  = stubbed_upload_model(
-                          processor_settings: [:thumbnail, :paperclip_optimizer]
+                          processor_settings: [:thumbnail, :paperclip_optimizer],
+                          instance_settings:  { jpegtran: true }
                         ).new(image: jpg)
     jpg.close
     optimized_upload.save
@@ -46,7 +49,7 @@ describe Paperclip::PaperclipOptimizer do
     expect(optimized_file_size).to be < unoptimized_file_size
   end
 
-  it 'creates smaller PNGs' do
+  it 'creates smaller PNGs with optipng' do
     png = get_fixture(:png)
     unoptimized_upload = Upload.new(image: png)
     unoptimized_upload.save
@@ -54,7 +57,8 @@ describe Paperclip::PaperclipOptimizer do
 
     png = get_fixture(:png)
     optimized_upload  = stubbed_upload_model(
-                          processor_settings: [:thumbnail, :paperclip_optimizer]
+                          processor_settings: [:thumbnail, :paperclip_optimizer],
+                          instance_settings:  { optipng: true }
                         ).new(image: png)
     png.close
     optimized_upload.save
@@ -65,22 +69,22 @@ describe Paperclip::PaperclipOptimizer do
     expect(optimized_file_size).to be < unoptimized_file_size
   end
 
-  it 'should allow disabled optimization options to be reenabled' do
-    settings  = {
-      gifsicle: { interlace: true }
-    }.reverse_merge(::PaperclipOptimizer::DEFAULT_SETTINGS)
+  it 'merges global, per-model and per-style options' do
+    global_options       = PaperclipOptimizer::DEFAULT_OPTIONS.merge( gifsicle: { interlace: true }, jpegtran: true )
+    final_merged_options = PaperclipOptimizer::DEFAULT_OPTIONS.merge( jpegtran: true, optipng: true )
+    
+    Paperclip::PaperclipOptimizer.default_options = global_options
 
-    ImageOptim.should_receive(:new).with(settings).and_call_original
+    ImageOptim.should_receive(:new).with(final_merged_options).and_call_original
 
     jpg = get_fixture(:jpg)
 
     stubbed_upload_model(
       processor_settings: [:paperclip_optimizer],
+      instance_settings:  { gifsicle: false },
       style_settings: {
         medium: {
-          paperclip_optimizer: {
-            gifsicle: { interlace: true }
-          }
+          paperclip_optimizer: { optipng: true }
         }
       }
     ).new(image: jpg)

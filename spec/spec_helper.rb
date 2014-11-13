@@ -22,11 +22,12 @@ class Upload < ActiveRecord::Base
   self.table_name = 'uploads'
 
   has_attached_file :image,
-    storage:    :filesystem,
-    path:       './spec/tmp/:id.:extension',
-    url:        '/spec/tmp/:id.:extension',
-    styles:     ->(attachment) { attachment.instance.style_settings },
-    processors: ->(instance) { instance.processor_settings }
+    storage:              :filesystem,
+    path:                 './spec/tmp/:id.:extension',
+    url:                  '/spec/tmp/:id.:extension',
+    styles:               ->(attachment) { attachment.instance.style_settings },
+    processors:           ->(instance) { instance.processor_settings },
+    paperclip_optimizer:  ->(attachment) { attachment.instance.instance_settings}
 
   if self.respond_to?(:do_not_validate_attachment_file_type)
     do_not_validate_attachment_file_type :image
@@ -35,6 +36,12 @@ class Upload < ActiveRecord::Base
   def style_settings
     {
       medium: { geometry: '500x500>' }
+    }
+  end
+  
+  def instance_settings
+    {
+
     }
   end
 
