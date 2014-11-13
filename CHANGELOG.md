@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## 2.0.0.beta.2
+
+* re-enable compatibility with Paperclip 3.4.2
+
 ## 2.0.0.beta
 
 * **all available optimization libraries are disabled by default**

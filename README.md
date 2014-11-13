@@ -25,6 +25,10 @@ which supports many external optimization libraries like
 
 ### What's new
 
+**2014-10-13 2.0.0.beta.2 released**
+
+* re-enable compatibility with Paperclip 3.4.2 and above
+
 **2014-10-13 2.0.0.beta released**
 
 * configure PaperclipOptimizer globally, per-attachment and per-style
@@ -49,7 +53,7 @@ Read the [CHANGELOG](CHANGELOG.md) for previous changes.
 
 ### Dependencies
 
-PaperclipOptimizer is currently compatible with Paperclip 4.2.x.
+PaperclipOptimizer is currently compatible with Paperclip 3.4.2 up to 4.2.x.
 
 ## Installation
 
