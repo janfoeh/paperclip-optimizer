@@ -9,12 +9,12 @@ Gem::Specification.new do |spec|
   spec.authors       = ['Jan-Christian Föh']
   spec.email         = ['jan@programmanstalt.de']
   spec.description   = 'paperclip-optimizer is a Paperclip processor for optimizing and minifying uploaded images.'
-  spec.summary       = 'Minify Paperclip JPEG and PNG attachments'
+  spec.summary       = 'Minify Paperclip image attachments like JPGs, GIFs or PNGs'
   spec.homepage      = 'https://github.com/janfoeh/paperclip-optimizer'
   spec.license       = 'MIT'
 
-  spec.add_runtime_dependency 'paperclip', '>= 3.4'
-  spec.add_runtime_dependency 'image_optim', '~> 0.9'
+  spec.add_runtime_dependency 'paperclip', '>= 4.2'
+  spec.add_runtime_dependency 'image_optim', '~> 0.19.0'
 
   spec.add_development_dependency 'bundler', '~> 1.3'
   spec.add_development_dependency 'rake', '~> 10.1'
