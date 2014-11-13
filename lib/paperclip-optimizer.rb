@@ -3,14 +3,21 @@ require 'paperclip-optimizer/version'
 require 'paperclip-optimizer/processor'
 
 module PaperclipOptimizer
-  DEFAULT_SETTINGS = {
+  DEFAULT_OPTIONS = {
+    skip_missing_workers: true,
+    advpng: false,
+    gifsicle: false,
+    jhead: false,
+    jpegoptim: false,
+    jpegrecompress: false,
+    jpegtran: false,
+    optipng: false,
     pngcrush: false,
     pngout: false,
-    advpng: false,
-    jpegoptim: false,
-    gifsicle: false
+    pngquant: false,
+    svgo: false
   }.freeze
-
+  
   # Helper class for capturing ImageOptims error output and redirecting it
   # to Paperclips logger instance
   class StdErrCapture
