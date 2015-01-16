@@ -14,7 +14,7 @@ Gem::Specification.new do |spec|
   spec.license       = 'MIT'
 
   spec.add_runtime_dependency 'paperclip', '>= 3.4'
-  spec.add_runtime_dependency 'image_optim', '~> 0.19.0'
+  spec.add_runtime_dependency 'image_optim', '~> 0.19'
 
   spec.add_development_dependency 'bundler', '~> 1.3'
   spec.add_development_dependency 'rake', '~> 10.1'
