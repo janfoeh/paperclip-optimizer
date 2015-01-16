@@ -25,6 +25,12 @@ which supports many external optimization libraries like
 
 ### What's new
 
+**2015-01-16 2.0.0.beta.3 released**
+
+* allow minor releases of image_optim above 0.19
+
+  image_optim 0.20 apparently [fixes an issue](https://github.com/toy/image_optim/issues/74) with Ruby 2.2.0 — thanks [leifcr](https://github.com/leifcr)
+
 **2014-10-13 2.0.0.beta.2 released**
 
 * re-enable compatibility with Paperclip 3.4.2 and above
