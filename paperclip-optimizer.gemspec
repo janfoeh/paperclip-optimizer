@@ -40,21 +40,25 @@ to create an initializer for global configuration.
 Breaking changes from 1.0.3
 ---------------------------
 
-Please note that Paperclip 2 now disables all optimization libraries by default. Re-enable jpegtran
-and optipng manually if you wish to retain the previous behaviour.
+By default, all optimization libraries are now disabled. Re-enable jpegtran and optipng manually 
+if you wish to retain the behaviour of PaperclipOptimizer 1.0.3.
 
 See https://github.com/janfoeh/paperclip-optimizer#settings for more information on the new 
 configuration system.
 
-PLEASE NOTE
------------
+=============================================
+IMPORTANT - READ THIS - IMPORTANT - READ THIS
+=============================================
 
-PaperclipOptimizer depends on image_optim, which by default inserts itself into the asset pipeline and 
-tries to compress your application assets. This might fail if you do not have all supported optimization 
-binaries installed. Add
+PaperclipOptimizer uses image_optim to do the heavy lifting. image_optim automatically inserts itself 
+into the asset pipeline and tries to compress your /app/assets/images as well. By default, it enables 
+all the optimization libraries it supports, and it will fail if you do not have all of them installed.
+
+Either add
 
     config.assets.image_optim = false
     
-to your config/application.rb to disable this.
+to your config/application.rb to disable this, or check https://github.com/toy/image_optim#from-rails 
+for how to configure this properly.
 }
 end

@@ -8,52 +8,24 @@ PaperclipOptimizer is a [Paperclip](https://github.com/thoughtbot/paperclip) pro
 optimizing and minifying uploaded images.
 
 It is just a thin wrapper around [ImageOptim](https://github.com/toy/image_optim), 
-which supports many external optimization libraries like
-
-* [advpng](http://advancemame.sourceforge.net/doc-advpng.html) from 
-  [AdvanceCOMP](http://advancemame.sourceforge.net/comp-readme.html)
-* [gifsicle](http://www.lcdf.org/gifsicle/)
-* [jhead](http://www.sentex.net/~mwandel/jhead/)
-* [jpegoptim](http://www.kokkonen.net/tjko/projects.html)
-* [jpeg-recompress](https://github.com/danielgtaylor/jpeg-archive#jpeg-recompress)
-* jpegtran from [Independent JPEG Group's JPEG library](http://www.ijg.org/)
-* [optipng](http://optipng.sourceforge.net/)
-* [pngcrush](http://pmt.sourceforge.net/pngcrush/)
-* [pngout](http://www.advsys.net/ken/util/pngout.htm)
-* [pngquant](http://pngquant.org/)
-* [svgo](https://github.com/svg/svgo)
+which supports many external optimization libraries such as [advpng](http://advancemame.sourceforge.net/doc-advpng.html), [gifsicle](http://www.lcdf.org/gifsicle/), 
+[jhead](http://www.sentex.net/~mwandel/jhead/), [jpegoptim](http://www.kokkonen.net/tjko/projects.html), [jpeg-recompress](https://github.com/danielgtaylor/jpeg-archive#jpeg-recompress), 
+[jpegtran](http://www.ijg.org/), [optipng](http://optipng.sourceforge.net/), [pngcrush](http://pmt.sourceforge.net/pngcrush/), [pngout](http://www.advsys.net/ken/util/pngout.htm), 
+[pngquant](http://pngquant.org/) and [svgo](https://github.com/svg/svgo).
 
 ### What's new
 
-**2015-01-16 2.0.0.beta.3 released**
+**2015-01-16 2.0.0**
 
-* allow minor releases of image_optim above 0.19
-
-  image_optim 0.20 apparently [fixes an issue](https://github.com/toy/image_optim/issues/74) with Ruby 2.2.0 — thanks [leifcr](https://github.com/leifcr)
-
-**2014-10-13 2.0.0.beta.2 released**
-
-* re-enable compatibility with Paperclip 3.4.2 and above
-
-**2014-10-13 2.0.0.beta released**
-
-* configure PaperclipOptimizer globally, per-attachment and per-style
+* better configuration: set options [globally, per attachment and per style](#settings)
 
   Thanks to [danschultzer](https://github.com/danschultzer), [braindeaf](https://github.com/braindeaf) and 
   [tirdadc](https://github.com/tirdadc) for pull requests, input and reports
-* **all available optimization libraries are disabled by default**
+* all available optimization libraries are disabled by default
 
   Previous versions enabled jpegtran and optipng by default. You will have to 
   re-enable them manually if you wish to retain that behaviour
 * optimizers which are enabled but missing or broken are ignored by default
-
-**2014-05-02 1.0.3 released**
-
-* updated tests, compatibility with Paperclip 4 - thanks [Sija](https://github.com/Sija)
-
-**2014-04-02 1.0.2 released**
-
-* relax Paperclip dependency, allow 3.4.x again since it works fine
 
 Read the [CHANGELOG](CHANGELOG.md) for previous changes.
 
@@ -77,13 +49,13 @@ If you wish to set global configuration settings, run
     
 to generate an initializer in config/initializers.
 
-### Caution
+### CAUTION
 
-image_optim inserts itself into the asset pipeline and tries to compress your applications image assets as well. 
+**image_optim automatically inserts itself into the asset pipeline and tries to compress your `/app/assets/images` as well. 
 Since it enables all libraries it supports by default, you might suddenly run into errors if you do not have all 
-of them installed.
+of them installed.**
 
-Please note: image_optim settings made through PaperclipOptimizer do not apply here.
+Please note: settings you made through PaperclipOptimizer only apply to Paperclip attachments, not to image_optims asset compressor.
 
 To disable image_optim in your asset pipeline, add
 
@@ -128,15 +100,20 @@ Settings are merged, so more specific settings replace less specific ones.
 
 **Global settings**
 
+Global settings apply everywhere. You can override them with per-attachment and per-style settings.
+
+Run `rails generate paperclip_optimizer:install` to create an initializer for global settings.
+
 ```ruby
+# config/initializers/paperclip_optimizer.rb
 Paperclip::PaperclipOptimizer.default_options = {
   skip_missing_workers: false
 }
 ```
 
-Run `rails generate paperclip_optimizer:install` to generate an initializer for global settings.
-
 **Per-attachment settings**
+
+Per-attachment settings apply to all styles of a particular attachment. Override them with per-style settings.
 
 ```ruby
 class User < ActiveRecord::Base
@@ -154,7 +131,7 @@ class User < ActiveRecord::Base
 end
 ```
 
-Just like Paperclips' `:styles` option, you can pass a lambda to `:paperclip_optimizer` which receives the `attachment` as an argument:
+Just like Paperclips' `:styles` option, you can pass a lambda to `:paperclip_optimizer` to configure it at runtime:
 
 ```ruby
 class User < ActiveRecord::Base
