@@ -33,7 +33,7 @@ Paperclip::PaperclipOptimizer.default_options = {
 #                         # will turn on :skip-missing-workers unless explicitly disabled (defaults to nil)
 #   allow_lossy: false,   # Allow lossy workers and optimizations (defaults to false)
 #   advpng: {
-#     leve: 4             # Compression level: 0 - don't compress, 1 - fast, 2 - normal, 3 - extra, 4 - extreme (defaults to 4)
+#     level: 4             # Compression level: 0 - don't compress, 1 - fast, 2 - normal, 3 - extra, 4 - extreme (defaults to 4)
 #   },
 #   gifsicle: {
 #     interlace: true,    # Interlace: true - interlace on, false - interlace off, nil - as is in original image
