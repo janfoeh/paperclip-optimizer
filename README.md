@@ -72,7 +72,7 @@ on how to install the various optimization libraries.
 ### Deployment on Heroku
 
 If you deploy to Heroku, take a look at the [image_optim_bin](https://github.com/mooktakim/image_optim_bin) gem. It supplies the necessary 
-optimization binaries, compiled and ready for Herokus environment.
+optimization binaries, compiled and ready for Herokus environment. Make sure to include it **before** paperclip-optimizer.
 
     gem "image_optim_bin", group: :production
     gem "paperclip-optimizer"
