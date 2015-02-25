@@ -2,7 +2,7 @@ require 'paperclip'
 require 'image_optim'
 
 module Paperclip
-  class PaperclipOptimizer < Processor  
+  class PaperclipOptimizer < Processor
     def self.default_options
       @default_options ||= ::PaperclipOptimizer::DEFAULT_OPTIONS
     end
@@ -31,7 +31,7 @@ module Paperclip
       if compressed_file_path && File.exist?(compressed_file_path)
         return File.open(compressed_file_path)
       else
-        return @file
+        return File.new(@file.path)
       end
     end
 
