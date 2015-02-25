@@ -2,7 +2,14 @@ require 'paperclip'
 require 'image_optim'
 
 module Paperclip
-  class PaperclipOptimizer < Processor  
+  class PaperclipOptimizer < Processor
+
+    def initialize(file, options = {}, attachment = nil)
+      super
+      @current_format = File.extname(@file.path)
+      @basename = File.basename(@file.path, @current_format)
+    end
+
     def self.default_options
       @default_options ||= ::PaperclipOptimizer::DEFAULT_OPTIONS
     end
@@ -13,6 +20,8 @@ module Paperclip
 
     def make
       src_path = File.expand_path(@file.path)
+      dst = Tempfile.new(@basename)
+      dst.binmode
 
       if optimizer_options[:verbose]
         Paperclip.logger.info "optimizing #{src_path} with settings: #{optimizer_options.inspect}"
@@ -29,10 +38,12 @@ module Paperclip
       end
 
       if compressed_file_path && File.exist?(compressed_file_path)
-        return File.open(compressed_file_path)
+        dst.write(compressed_file_path)
       else
-        return @file
+        dst.write(@file)
       end
+
+      dst
     end
 
       protected
