@@ -3,6 +3,13 @@ require 'image_optim'
 
 module Paperclip
   class PaperclipOptimizer < Processor
+
+    def initialize(file, options = {}, attachment = nil)
+      super
+      @current_format = File.extname(@file.path)
+      @basename = File.basename(@file.path, @current_format)
+    end
+
     def self.default_options
       @default_options ||= ::PaperclipOptimizer::DEFAULT_OPTIONS
     end
@@ -29,10 +36,17 @@ module Paperclip
       end
 
       if compressed_file_path && File.exist?(compressed_file_path)
-        return File.open(compressed_file_path)
+        dst = Tempfile.new(@basename)
+        dst.binmode
+        compressed_file = File.open(compressed_file_path)
+        compressed_file.rewind
+        dst.write(compressed_file.read)
+        compressed_file.close
+        return dst
       else
-        return File.new(@file.path)
+        return @file
       end
+
     end
 
       protected
