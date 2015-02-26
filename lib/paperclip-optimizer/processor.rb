@@ -20,8 +20,6 @@ module Paperclip
 
     def make
       src_path = File.expand_path(@file.path)
-      dst = Tempfile.new(@basename)
-      dst.binmode
 
       if optimizer_options[:verbose]
         Paperclip.logger.info "optimizing #{src_path} with settings: #{optimizer_options.inspect}"
@@ -38,12 +36,17 @@ module Paperclip
       end
 
       if compressed_file_path && File.exist?(compressed_file_path)
-        dst.write(compressed_file_path)
+        dst = Tempfile.new(@basename)
+        dst.binmode
+        compressed_file = File.open(compressed_file_path)
+        compressed_file.rewind
+        dst.write(compressed_file.read)
+        compressed_file.close
+        return dst
       else
         dst.write(@file)
       end
 
-      dst
     end
 
       protected
