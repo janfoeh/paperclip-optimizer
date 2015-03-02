@@ -44,7 +44,7 @@ module Paperclip
         compressed_file.close
         return dst
       else
-        dst.write(@file)
+        return @file
       end
 
     end
