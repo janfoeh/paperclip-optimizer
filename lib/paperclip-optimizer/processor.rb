@@ -42,6 +42,7 @@ module Paperclip
         compressed_file.rewind
         dst.write(compressed_file.read)
         compressed_file.close
+        dst.rewind
         return dst
       else
         return @file
