@@ -2,6 +2,7 @@ language: ruby
 rvm:
   - "1.9.3"
   - "2.2.0"
+  - "2.3.0"
 before_install:
  - sudo apt-get install -qq libjpeg-progs optipng
 script: bundle exec rspec -b spec
