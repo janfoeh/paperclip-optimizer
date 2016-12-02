@@ -2,7 +2,7 @@ require 'paperclip'
 require 'image_optim'
 
 module Paperclip
-  class PaperclipOptimizer < Processor  
+  class PaperclipOptimizer < Processor
     def self.default_options
       @default_options ||= ::PaperclipOptimizer::DEFAULT_OPTIONS
     end

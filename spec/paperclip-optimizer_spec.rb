@@ -25,7 +25,7 @@ describe Paperclip::PaperclipOptimizer do
 
       FileUtils.remove_entry_secure( File.join(tmp_dir, f) )
     end
-    
+
     Paperclip::PaperclipOptimizer.default_options = PaperclipOptimizer::DEFAULT_OPTIONS
   end
 
@@ -72,7 +72,7 @@ describe Paperclip::PaperclipOptimizer do
   it 'merges global, per-model and per-style options' do
     global_options       = PaperclipOptimizer::DEFAULT_OPTIONS.merge( gifsicle: { interlace: true }, jpegtran: true )
     final_merged_options = PaperclipOptimizer::DEFAULT_OPTIONS.merge( jpegtran: true, optipng: true )
-    
+
     Paperclip::PaperclipOptimizer.default_options = global_options
 
     ImageOptim.should_receive(:new).with(final_merged_options).and_call_original

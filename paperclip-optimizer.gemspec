@@ -26,7 +26,7 @@ Gem::Specification.new do |spec|
   spec.files         = `git ls-files`.split($INPUT_RECORD_SEPARATOR)
   spec.test_files    = spec.files.grep(%r{^(test|spec|features)/})
   spec.require_paths = ['lib']
-  
+
   spec.post_install_message = %q{
 Initializer
 -----------
@@ -40,25 +40,25 @@ to create an initializer for global configuration.
 Breaking changes from 1.0.3
 ---------------------------
 
-By default, all optimization libraries are now disabled. Re-enable jpegtran and optipng manually 
+By default, all optimization libraries are now disabled. Re-enable jpegtran and optipng manually
 if you wish to retain the behaviour of PaperclipOptimizer 1.0.3.
 
-See https://github.com/janfoeh/paperclip-optimizer#settings for more information on the new 
+See https://github.com/janfoeh/paperclip-optimizer#settings for more information on the new
 configuration system.
 
 =============================================
 IMPORTANT - READ THIS - IMPORTANT - READ THIS
 =============================================
 
-PaperclipOptimizer uses image_optim to do the heavy lifting. image_optim automatically inserts itself 
-into the asset pipeline and tries to compress your /app/assets/images as well. By default, it enables 
+PaperclipOptimizer uses image_optim to do the heavy lifting. image_optim automatically inserts itself
+into the asset pipeline and tries to compress your /app/assets/images as well. By default, it enables
 all the optimization libraries it supports, and it will fail if you do not have all of them installed.
 
 Either add
 
     config.assets.image_optim = false
-    
-to your config/application.rb to disable this, or check https://github.com/toy/image_optim#from-rails 
+
+to your config/application.rb to disable this, or check https://github.com/toy/image_optim#from-rails
 for how to configure this properly.
 }
 end
