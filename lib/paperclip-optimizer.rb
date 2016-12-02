@@ -1,4 +1,3 @@
-
 require 'paperclip-optimizer/version'
 require 'paperclip-optimizer/processor'
 
@@ -17,7 +16,7 @@ module PaperclipOptimizer
     pngquant: false,
     svgo: false
   }.freeze
-  
+
   # Helper class for capturing ImageOptims error output and redirecting it
   # to Paperclips logger instance
   class StdErrCapture

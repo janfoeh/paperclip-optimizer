@@ -38,7 +38,7 @@ class Upload < ActiveRecord::Base
       medium: { geometry: '500x500>' }
     }
   end
-  
+
   def instance_settings
     {
 

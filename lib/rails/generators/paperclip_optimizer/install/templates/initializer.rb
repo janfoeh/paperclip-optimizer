@@ -47,12 +47,12 @@ Paperclip::PaperclipOptimizer.default_options = {
 #     max_quality: 100    # Maximum image quality factor 0..100 (defaults to 100)
 #   },
 #   jpegrecompress: {
-#     quality: 3          # JPEG quality preset: 0 - low, 1 - medium, 2 - high, 3 - veryhigh (defaults to 3)  
+#     quality: 3          # JPEG quality preset: 0 - low, 1 - medium, 2 - high, 3 - veryhigh (defaults to 3)
 #   },
 #   jpegtran: {
 #     copy_chunks: false, # Copy all chunks (defaults to false)
 #     progressive: true,  # Create progressive JPEG file (defaults to true)
-#     jpegrescan: false   # Use jpegtran through jpegrescan, ignore progressive option (defaults to false) 
+#     jpegrescan: false   # Use jpegtran through jpegrescan, ignore progressive option (defaults to false)
 #   },
 #   optipng: {
 #     level: 6,           # Optimization level preset: 0 is least, 7 is best (defaults to 6)

@@ -4,13 +4,13 @@
 [![Build Status](https://travis-ci.org/janfoeh/paperclip-optimizer.png)](https://travis-ci.org/janfoeh/paperclip-optimizer)
 [![Dependency Status](https://gemnasium.com/janfoeh/paperclip-optimizer.png)](https://gemnasium.com/janfoeh/paperclip-optimizer)
 
-PaperclipOptimizer is a [Paperclip](https://github.com/thoughtbot/paperclip) processor for 
+PaperclipOptimizer is a [Paperclip](https://github.com/thoughtbot/paperclip) processor for
 optimizing and minifying uploaded images.
 
-It is just a thin wrapper around [ImageOptim](https://github.com/toy/image_optim), 
-which supports many external optimization libraries such as [advpng](http://advancemame.sourceforge.net/doc-advpng.html), [gifsicle](http://www.lcdf.org/gifsicle/), 
-[jhead](http://www.sentex.net/~mwandel/jhead/), [jpegoptim](http://www.kokkonen.net/tjko/projects.html), [jpeg-recompress](https://github.com/danielgtaylor/jpeg-archive#jpeg-recompress), 
-[jpegtran](http://www.ijg.org/), [optipng](http://optipng.sourceforge.net/), [pngcrush](http://pmt.sourceforge.net/pngcrush/), [pngout](http://www.advsys.net/ken/util/pngout.htm), 
+It is just a thin wrapper around [ImageOptim](https://github.com/toy/image_optim),
+which supports many external optimization libraries such as [advpng](http://advancemame.sourceforge.net/doc-advpng.html), [gifsicle](http://www.lcdf.org/gifsicle/),
+[jhead](http://www.sentex.net/~mwandel/jhead/), [jpegoptim](http://www.kokkonen.net/tjko/projects.html), [jpeg-recompress](https://github.com/danielgtaylor/jpeg-archive#jpeg-recompress),
+[jpegtran](http://www.ijg.org/), [optipng](http://optipng.sourceforge.net/), [pngcrush](http://pmt.sourceforge.net/pngcrush/), [pngout](http://www.advsys.net/ken/util/pngout.htm),
 [pngquant](http://pngquant.org/) and [svgo](https://github.com/svg/svgo).
 
 ### What's new
@@ -19,11 +19,11 @@ which supports many external optimization libraries such as [advpng](http://adva
 
 * better configuration: set options [globally, per attachment and per style](#settings)
 
-  Thanks to [danschultzer](https://github.com/danschultzer), [braindeaf](https://github.com/braindeaf) and 
+  Thanks to [danschultzer](https://github.com/danschultzer), [braindeaf](https://github.com/braindeaf) and
   [tirdadc](https://github.com/tirdadc) for pull requests, input and reports
 * all available optimization libraries are disabled by default
 
-  Previous versions enabled jpegtran and optipng by default. You will have to 
+  Previous versions enabled jpegtran and optipng by default. You will have to
   re-enable them manually if you wish to retain that behaviour
 * optimizers which are enabled but missing or broken are ignored by default
 
@@ -42,17 +42,17 @@ Add this line to your application's Gemfile after the Paperclip gem:
 And then execute:
 
     $ bundle
-    
+
 If you wish to set global configuration settings, run
 
     $ rails generate paperclip_optimizer:install
-    
+
 to generate an initializer in config/initializers.
 
 ### CAUTION
 
-**image_optim automatically inserts itself into the asset pipeline and tries to compress your `/app/assets/images` as well. 
-Since it enables all libraries it supports by default, you might suddenly run into errors if you do not have all 
+**image_optim automatically inserts itself into the asset pipeline and tries to compress your `/app/assets/images` as well.
+Since it enables all libraries it supports by default, you might suddenly run into errors if you do not have all
 of them installed.**
 
 Please note: settings you made through PaperclipOptimizer only apply to Paperclip attachments, not to image_optims asset compressor.
@@ -66,12 +66,12 @@ To disable image_optim in your asset pipeline, add
 
 to your config/application.rb.
 
-See [ImageOptims README](https://github.com/toy/image_optim#binaries-location) 
+See [ImageOptims README](https://github.com/toy/image_optim#binaries-location)
 on how to install the various optimization libraries.
 
 ### Deployment on Heroku
 
-If you deploy to Heroku, take a look at the [image_optim_bin](https://github.com/mooktakim/image_optim_bin) gem. It supplies the necessary 
+If you deploy to Heroku, take a look at the [image_optim_bin](https://github.com/mooktakim/image_optim_bin) gem. It supplies the necessary
 optimization binaries, compiled and ready for Herokus environment. Make sure to include it **before** paperclip-optimizer.
 
     gem "image_optim_bin", group: :production
@@ -84,18 +84,18 @@ Just add `:paperclip_optimizer` to Paperclips' `:processors` - setting:
 ```ruby
 class User < ActiveRecord::Base
   attr_accessible :avatar
-  has_attached_file :avatar, 
+  has_attached_file :avatar,
                     styles: { thumb: "100x100>" },
                     processors: [:thumbnail, :paperclip_optimizer]
 end
 ```
 
-Remember to include the `:thumbnail` processor as well if you want to retain 
+Remember to include the `:thumbnail` processor as well if you want to retain
 Paperclips geometry functionality.
 
 ### Settings
 
-You can pass configuration options to ImageOptim in three locations: globally, per attachment and per style. 
+You can pass configuration options to ImageOptim in three locations: globally, per attachment and per style.
 Settings are merged, so more specific settings replace less specific ones.
 
 **Global settings**
@@ -170,7 +170,7 @@ class User < ActiveRecord::Base
 end
 ```
 
-See [ImageOptims options](https://github.com/toy/image_optim#options) or the initializer for 
+See [ImageOptims options](https://github.com/toy/image_optim#options) or the initializer for
 all available options.
 
 ## Contributing
@@ -180,4 +180,3 @@ all available options.
 3. Commit your changes (`git commit -am 'Add some feature'`)
 4. Push to the branch (`git push origin my-new-feature`)
 5. Create new Pull Request
-
