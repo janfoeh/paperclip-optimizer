@@ -4,16 +4,16 @@ $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
 require 'paperclip-optimizer/version'
 
 Gem::Specification.new do |spec|
-  spec.name          = 'paperclip-optimizer'
+  spec.name          = 'kt-paperclip-optimizer'
   spec.version       = PaperclipOptimizer::VERSION
-  spec.authors       = ['Jan-Christian Föh']
-  spec.email         = ['jan@programmanstalt.de']
-  spec.description   = 'paperclip-optimizer is a Paperclip processor for optimizing and minifying uploaded images.'
+  spec.authors       = ['reedstonefood']
+  spec.email         = ['reedstonefood@users.noreply.github.com']
+  spec.description   = 'kt-paperclip-optimizer is a Paperclip processor for optimizing and minifying uploaded images.'
   spec.summary       = 'Minify Paperclip image attachments like JPGs, GIFs or PNGs'
-  spec.homepage      = 'https://github.com/janfoeh/paperclip-optimizer'
+  spec.homepage      = 'https://github.com/reedstonefood/kt-paperclip-optimizer'
   spec.license       = 'MIT'
 
-  spec.add_runtime_dependency 'paperclip', '>= 3.4'
+  spec.add_runtime_dependency 'kt-paperclip', '>= 6.2'
   spec.add_runtime_dependency 'image_optim', '~> 0.19'
 
   spec.add_development_dependency 'bundler', '~> 1.3'
@@ -33,7 +33,7 @@ Initializer
 
 run
 
-    rails g paperclip_optimizer:install
+    rails g kt_paperclip_optimizer:install
 
 to create an initializer for global configuration.
 

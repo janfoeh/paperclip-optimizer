@@ -1,5 +1,11 @@
 # CHANGELOG
 
+## 3.0.0
+
+* Fork from paperclip-optimizer
+
+* Use kt-paperclip instead of paperclip
+
 ## 2.0.0
 
 * same as Beta 3

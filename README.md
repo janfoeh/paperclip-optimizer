@@ -1,10 +1,8 @@
 # PaperclipOptimizer
 
-[![Gem Version](https://badge.fury.io/rb/paperclip-optimizer.png)](http://badge.fury.io/rb/paperclip-optimizer)
-[![Build Status](https://travis-ci.org/janfoeh/paperclip-optimizer.png)](https://travis-ci.org/janfoeh/paperclip-optimizer)
-[![Dependency Status](https://gemnasium.com/janfoeh/paperclip-optimizer.png)](https://gemnasium.com/janfoeh/paperclip-optimizer)
+[![Gem Version](https://badge.fury.io/rb/paperclip-optimizer.png)](http://badge.fury.io/rb/kt-paperclip-optimizer)
 
-PaperclipOptimizer is a [Paperclip](https://github.com/thoughtbot/paperclip) processor for 
+KtPaperclipOptimizer is a [kt-Paperclip](https://github.com/kreeti/kt-paperclip) processor for 
 optimizing and minifying uploaded images.
 
 It is just a thin wrapper around [ImageOptim](https://github.com/toy/image_optim), 
@@ -14,6 +12,10 @@ which supports many external optimization libraries such as [advpng](http://adva
 [pngquant](http://pngquant.org/) and [svgo](https://github.com/svg/svgo).
 
 ### What's new
+
+**2020-03-27 3.0.0**
+
+* Use the maintained gem kt-paperclip instead of the deprecated papercip.
 
 **2015-01-16 2.0.0**
 
