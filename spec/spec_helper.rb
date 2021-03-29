@@ -4,7 +4,6 @@ require 'paperclip/railtie'
 require 'paperclip-optimizer'
 
 require 'rspec'
-require 'rspec/autorun'
 
 require 'active_record'
 

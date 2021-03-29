@@ -9,7 +9,7 @@ describe Paperclip::PaperclipOptimizer do
 
     # prevent ActiveModel::Validations from blowing up when error messages are
     # accessed on an anonymous class
-    stubbed_model.stub( model_name: ActiveModel::Name.new(self, nil, 'temp') )
+    allow(stubbed_model).to receive(:model_name) { ActiveModel::Name.new(self, nil, 'temp') }
     stubbed_model.any_instance.stub(*args)
 
     stubbed_model
@@ -75,7 +75,7 @@ describe Paperclip::PaperclipOptimizer do
     
     Paperclip::PaperclipOptimizer.default_options = global_options
 
-    ImageOptim.should_receive(:new).with(final_merged_options).and_call_original
+    expect(ImageOptim).to receive(:new).with(final_merged_options).and_call_original
 
     jpg = get_fixture(:jpg)
 

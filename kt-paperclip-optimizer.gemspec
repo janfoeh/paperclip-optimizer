@@ -16,12 +16,11 @@ Gem::Specification.new do |spec|
   spec.add_runtime_dependency 'kt-paperclip', '>= 6.2'
   spec.add_runtime_dependency 'image_optim', '~> 0.19'
 
-  spec.add_development_dependency 'bundler', '~> 1.3'
-  spec.add_development_dependency 'rake', '~> 10.1'
-  spec.add_development_dependency 'rspec', '~> 2.13'
-  spec.add_development_dependency 'rails', '>= 3.2.20', '<= 4.2.0'
-  spec.add_development_dependency 'sqlite3', '~> 1.3.10'
-  spec.add_development_dependency 'rubocop', '~> 0.26.1'
+  spec.add_development_dependency 'bundler', '~> 2.1'
+  spec.add_development_dependency 'rake', '~> 12.3'
+  spec.add_development_dependency 'rspec', '~> 3.9'
+  spec.add_development_dependency 'rails', '>= 3.2.20'
+  spec.add_development_dependency 'sqlite3', '~> 1.4.2'
 
   spec.files         = `git ls-files`.split($INPUT_RECORD_SEPARATOR)
   spec.test_files    = spec.files.grep(%r{^(test|spec|features)/})
