@@ -7,10 +7,10 @@ Gem::Specification.new do |spec|
   spec.name          = 'kt-paperclip-optimizer'
   spec.version       = PaperclipOptimizer::VERSION
   spec.authors       = ['reedstonefood']
-  spec.email         = ['reedstonefood@users.noreply.github.com']
+  spec.email         = ['hello@loco2.com']
   spec.description   = 'kt-paperclip-optimizer is a Paperclip processor for optimizing and minifying uploaded images.'
   spec.summary       = 'Minify Paperclip image attachments like JPGs, GIFs or PNGs'
-  spec.homepage      = 'https://github.com/reedstonefood/kt-paperclip-optimizer'
+  spec.homepage      = 'https://github.com/loco2/kt-paperclip-optimizer'
   spec.license       = 'MIT'
 
   spec.add_runtime_dependency 'kt-paperclip', '>= 6.2'
