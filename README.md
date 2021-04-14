@@ -1,8 +1,15 @@
 # PaperclipOptimizer
 
-[![Gem Version](https://badge.fury.io/rb/paperclip-optimizer.png)](http://badge.fury.io/rb/paperclip-optimizer)
-[![Build Status](https://travis-ci.org/janfoeh/paperclip-optimizer.png)](https://travis-ci.org/janfoeh/paperclip-optimizer)
-[![Dependency Status](https://gemnasium.com/janfoeh/paperclip-optimizer.png)](https://gemnasium.com/janfoeh/paperclip-optimizer)
+### PaperclipOptimizer is no longer being maintained
+
+As Paperclip has been deprecated, this gem has reached its end-of-life as well.
+
+Maintained forks of both Paperclip as well as PaperclipOptimizer may be found at:
+
+* [kt-paperclip](https://github.com/kreeti/kt-paperclip)
+* [kt-paperclip-optimizer](https://github.com/loco2/kt-paperclip-optimizer)
+
+-------------------------------------------
 
 PaperclipOptimizer is a [Paperclip](https://github.com/thoughtbot/paperclip) processor for 
 optimizing and minifying uploaded images.
